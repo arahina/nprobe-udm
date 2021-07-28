@@ -11,7 +11,7 @@ Simply copy the file releases/nprobe-udm-1.0.tar.gz to yor UDM Pro into /mnt/dat
 
 By default it deploys *two* probes, one on network interface br0 (192.168.0.0/24) named nprobe-ubm-br0 and one on network interface br50 (192.168.50.0/24) named nprobe-ubm-br50.  These are the main subnets I monitor with Ntop.  Edit the install-nprobe.sh script *not* to start an nprobe for br50.
 
-Once installed podman images should look like this:
+Once installed ```podman images``` should look like this:
 
 ```
 # podman images
@@ -22,7 +22,7 @@ localhost/unifi-os         latest        22b86e7e778a   2 weeks ago      1.46 GB
 localhost/unifi-os         default       22b86e7e778a   2 weeks ago      1.46 GB                    true
 localhost/unifi-os         current       bd0702c64796   2 months ago     unable to determine size   false
 ```
-And "podman ps" should look like this:
+And  to view the running containers you use ```podman ps``` like this:
 ```
 # podman ps
 CONTAINER ID  IMAGE                        COMMAND     CREATED        STATUS            PORTS  NAMES
@@ -34,9 +34,9 @@ CONTAINER ID  IMAGE                        COMMAND     CREATED        STATUS    
 You will need to put your nprobe.license and GeoIP.conf license files in the nprobe-udm directory, preferably *before* running the install-nprobe-sh script otherwise you'll need to stop/start the container afer installation.  When the container is built, it installs support for GeoIP but you need to register and get a license file (which is free).  If you don't buy a liccense for nprobe then it will operate in demo mode.
 
 # Running the probes
-Once the installer has completed you can view the running containers with "podman ps".  You then need to configure your Ntop installation runnign elsewhere to connect to the listeners on port 5557 (br0) and 5559 (br50). 
+Once the installer has completed you can view the running containers with *podman ps*.  You then need to configure your Ntop installation running elsewhere to connect to the listeners on port 5557 (br0) and 5559 (br50). 
 
-You can start and stop the containers with "podman stop nprobe-udm-br0" etc without continually rebuilding the images.  Run the uninstall-nprobe.sh to totally clean up and remove the containers and the nprobe image.
+You can start and stop the containers with ```podman stop nprobe-udm-br0``` etc without continually rebuilding the images.  Run the ```uninstall-nprobe.sh``` to totally clean up and remove the containers and the nprobe image.
 
 # Notes
 My scripts aren't perfect and could be streamlined a little bit and parameterized more but everything you need to run nprobe and build the container on the UDM Pro itself is here.  This is what I run on my UDM Pro. 

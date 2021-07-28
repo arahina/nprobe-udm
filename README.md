@@ -4,12 +4,18 @@ Onboard the M.V Arahina we have a large range of network equipment including Ubi
 
 This project builds a podman container with a running Ntop nProbe on the Ubiquti UDM-Pro as I found the performance overhead of runnign Ntopng on the UDM itself to much and so Ntopng is run on a seperate RPI4B server running RPiOS.  
 
-# Installation
+# Preparation
 The UDM Pro doesn't have git installed so in the github releases folder there is a compressed archive file to use ```nprobe-udm-1.0.tar.gz```
 Copy that file to your UDM Pro with scp (```scp nprobe-udm-1.0.tar.gz root@192.168.1.1:/mnt/data_ext/```).  
 You run everything on the UDM itself in the location ```/mnt/data_ext/nprobe-udm``` . 
 
 For /mnt/data_ext to be there you'll need an external disk in your UDM-Pro otherwise edit the dockerfile and install script to be "/mnt/data" whereever you see ```/mnt/data_ext/...```  
+
+# IMPORTANT:  
+The Dockerfile fetches the UDM-Pro package from the URL https://packages.ntop.org/Ubiquity/UDMPro/nprobe_9.5.210322-7188_arm64.deb
+This URL will likely go out of date soon enough and I need to add a scraper.  But for now the package .deb file ```nprobe_9.5.210322-7188_arm64.deb`` is hard-coded in the Dockerfile.  Edit it if you need to.  
+
+# Installation
 
 So, to install simply scp the file ```nprobe-udm-1.0.tar.gz``` to yor UDM Pro into ```/mnt/data_ext``` and uncompress it with ```tar -xvzf nprobe-udm-1.0.tar.gz``` and then cd to the directory ```nprobe-udm``` and run ```./install-nprobe.sh```.  Everything should then just work assuming your Ntopng collector is configured correctly for these nprobe instances.
 

@@ -2,14 +2,18 @@
 
 Onboard the M.V Arahina we have a large range of network equipment including Ubiqiti UDM-Pro, Edgerouter-4 and Switches and we use Ntopng to perform netflow monitoring in addition to the DPI tools in the UDM-Pro Unifi software. 
 
-This project builds a container with a running Ntop nProbe on the Ubiquti UDM-Pro as I found the performance overhead of runnign Ntopng on the UDM itself to much and so Ntopng is run on a seperate RPI4B server running either RPiOS or sometimes in Ubuntu inside a 6 node RPI Kubernetes cluster.  
+This project builds a container with a running Ntop nProbe on the Ubiquti UDM-Pro as I found the performance overhead of runnign Ntopng on the UDM itself to much and so Ntopng is run on a seperate RPI4B server running RPiOS.  
 
 # Installation
-The UDM Pro doesn't have git installed so in the releases folder is ```nprobe-udm-1.0.tar.gz```, copy that to your UDM Pro.  You run everything on the UDM itself in location ```/mnt/data_ext``` . You'll need an external disk in your UDM-Pro otherwise edit the dockerfile and install script to be "/mnt/data" whereever you see ```/mnt/data_ext/...```  
+The UDM Pro doesn't have git installed so in the github releases folder there is a compressed archive file to use ```nprobe-udm-1.0.tar.gz```
+Copy that file to your UDM Pro with scp (```scp nprobe-udm-1.0.tar.gz root@192.168.1.1:/mnt/data_ext/```).  
+You run everything on the UDM itself in the location ```/mnt/data_ext/nprobe-udm``` . 
 
-Simply copy the file ```releases/nprobe-udm-1.0.tar.gz``` to yor UDM Pro into ```/mnt/data_ext``` and uncompress it with ```tar -xvzf nprobe-udm-1.0.tar.gz``` and then cd to the directory ```nprobe-udm``` and run ```./install-nprobe.sh```
+For /mnt/data_ext to be there you'll need an external disk in your UDM-Pro otherwise edit the dockerfile and install script to be "/mnt/data" whereever you see ```/mnt/data_ext/...```  
 
-By default it deploys *two* probes, one on network interface br0 (192.168.0.0/24) named nprobe-ubm-br0 and one on network interface br50 (192.168.50.0/24) named nprobe-ubm-br50.  These are the main subnets I monitor with Ntop.  Edit the install-nprobe.sh script *not* to start an nprobe for br50.
+So, to install simply scp the file ```nprobe-udm-1.0.tar.gz``` to yor UDM Pro into ```/mnt/data_ext``` and uncompress it with ```tar -xvzf nprobe-udm-1.0.tar.gz``` and then cd to the directory ```nprobe-udm``` and run ```./install-nprobe.sh```.  Everything should then just work assuming your Ntopng collector is configured correctly for these nprobe instances.
+
+By default the ```install-nprobe.sh``` script deploys *two* probes, one on network interface br0 (192.168.0.0/24) named nprobe-ubm-br0 and one on network interface br50 (192.168.50.0/24) named nprobe-ubm-br50.  These are the main subnets I monitor with Ntop.  Edit the install-nprobe.sh script *not* to start an nprobe for br50 or to modify it for your needs.
 
 Once installed ```podman images``` should look like this:
 

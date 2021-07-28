@@ -13,7 +13,7 @@ For /mnt/data_ext to be there you'll need an external disk in your UDM-Pro other
 
 # IMPORTANT:  
 The Dockerfile fetches the UDM-Pro package from the URL https://packages.ntop.org/Ubiquity/UDMPro/nprobe_9.5.210322-7188_arm64.deb
-This URL will likely go out of date soon enough and I need to add a scraper.  But for now the package .deb file ```nprobe_9.5.210322-7188_arm64.deb`` is hard-coded in the Dockerfile.  Edit it if you need to.  
+This URL will likely go out of date and disappear soon enough as ntop.org don't keep old versions online and I'm yet to add a HTML scraper to get the URL for the latest file.  But for now the package .deb file ```nprobe_9.5.210322-7188_arm64.deb``` is hard-coded in the Dockerfile.  Edit it if you need to.  
 
 # Installation
 

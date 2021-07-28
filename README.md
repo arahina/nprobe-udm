@@ -4,7 +4,7 @@ Onboard the M.V Arahina we have a large range of network equipment including Ubi
 
 This project was inspired by thr awesome Github project https://github.com/tusc/ntopng-udm for deploying Ntopng into a container on the UDM Pro. This project is similar but builds a podman container with a running nProbe inside its own container on the Ubiquti UDM-Pro as I found the performance overhead of running Ntopng on the UDM itself to much and so Ntopng is run on a seperate RPI4B server running RPiOS.  I also prefer running the Pro versions of Ntopng and nprobe as the extra functionlity is worth it ie purchase licenses ;-).  
 
-**Although note to Ntop**:  Don't be stingy, include licenses for all nprobe plugins for the pro-embedded versions of nprobe since you stopped selling them standalone! 
+**Although note to Ntop**:  Don't be stingy, include licenses for all nprobe plugins for the pro-embedded versions of nprobe since you stopped selling them standalone, the lack of plugins for nprobe-embedded is ridiculous! 
 
 ## Preparation
 The UDM Pro doesn't have git installed so in the github releases folder there is a compressed archive file to use ```nprobe-udm-1.0.tar.gz```

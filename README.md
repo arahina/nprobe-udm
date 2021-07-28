@@ -13,6 +13,7 @@ By default it deploys *two* probes, one on network interface br0 (192.168.0.0/24
 
 Once installed podman images should look like this:
 
+```
 # podman images
 REPOSITORY                 TAG           IMAGE ID       CREATED          SIZE                       R/O
 localhost/nprobe-udm       latest        8775505907f6   13 seconds ago   186 MB                     false
@@ -20,15 +21,15 @@ docker.io/library/debian   buster-slim   9e410c2519d5   6 days ago       66.8 MB
 localhost/unifi-os         latest        22b86e7e778a   2 weeks ago      1.46 GB                    true
 localhost/unifi-os         default       22b86e7e778a   2 weeks ago      1.46 GB                    true
 localhost/unifi-os         current       bd0702c64796   2 months ago     unable to determine size   false
-
+```
 And "podman ps" should look like this:
-
+```
 # podman ps
 CONTAINER ID  IMAGE                        COMMAND     CREATED        STATUS            PORTS  NAMES
 113aac517981  localhost/nprobe-udm:latest              2 minutes ago  Up 2 minutes ago         nprobe-udm-br50
 4ccc793788a7  localhost/nprobe-udm:latest              2 minutes ago  Up 2 minutes ago         nprobe-udm-br0
 67cfa24a2625  localhost/unifi-os:latest    /sbin/init  2 weeks ago    Up 9 days ago            unifi-os
-
+```
 # License Files
 You will need to put your nprobe.license and GeoIP.conf license files in the nprobe-udm directory, preferably *before* running the install-nprobe-sh script otherwise you'll need to stop/start the container afer installation.  When the container is built, it installs support for GeoIP but you need to register and get a license file (which is free).  If you don't buy a liccense for nprobe then it will operate in demo mode.
 
